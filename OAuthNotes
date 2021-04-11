@@ -1,0 +1,85 @@
+OAuth 2.0 - Overview - Notes
+OAuth 2.0 Overview
+What is OAuth?
+
+This is an open standard on how to implement authorization.
+
+Resource Owner – This is typically the end user.
+
+Resource Server – This is the server that is hosting a protected resource.
+
+Client – This is the application that is requesting the use of the protected resource on behalf of the user.
+
+Authorization Server – This is the entity that authorizes the Resource Owner and issues access tokens.
+
+What are the client types
+
+Confidential clients – These are applications that are able to securely authenticate with the authorization server. This is done via the use of a client secret.
+
+Public clients – These are applications that run on the browser or on a mobile device that are unable to use client secrets.
+
+The Authorization Code Flow
+
+Here the application redirects the user to the Authorization Server.
+
+The user completes the authorization steps presented by the Authorization Server.
+
+The user is then redirected back to the application with an authorization code in the query string.
+
+The application then exchanges the authorization code for the access token.
+
+The different query string parameters
+
+response_type=code – This tells the authorization server to initiate the authorization code flow.
+
+client_id – This is the public identifier of the application.
+
+redirect_uri – This tells the authorization server where to send the user back to after the request has been approved.
+
+scope – This is one or more space-separated strings that indicate the permissions the application is requesting for.
+
+state – This is a random string generated in the request. This should then be checked by the application after the user authorizes the application. This helps to prevent Cross Site Request Forgery attacks.
+
+Next the application makes a POST request to the token endpoint to get the token
+
+grant_type=authorization_code– This tells the token endpoint on the authorization server to use the Authorization Code grant type.
+
+code – This was the code that was exchanged in the initial redirect request
+
+client_id – This is the public identifier of the application.
+
+client_secret – The application’s client secret
+
+The Implicit Grant Flow
+
+Here the application redirects the user to the Authorization Server.
+
+The user completes the authorization steps presented by the Authorization Server.
+
+The user is then redirected back to the application with the access token in the URL fragment.
+
+The different query string parameters
+
+response_type=token – This tells the authorization server to initiate the implicit flow.
+
+client_id – This is the public identifier of the application.
+
+redirect_uri – This tells the authorization server where to send the user back to after the request has been approved.
+
+scope – This is one or more space-separated strings that indicate the permissions the application is requesting for.
+
+state – This is a random string generated in the request. This should then be checked by the application after the user authorizes the application. This helps to prevent Cross Site Request Forgery attacks.
+
+The Client Credentials Flow
+
+The Client Credentials Flow is used by clients to obtain an access token outside the context of the user.
+
+The different query string parameters
+
+grant_type = client_credentials
+
+scope – This is one or more space-separated strings that indicate the permissions the application is requesting for.
+
+client_id – This is the public identifier of the application.
+
+client_secret – The application’s client secret
